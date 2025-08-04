@@ -1,0 +1,132 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f4f6f8;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header */
+h1 {
+  margin-bottom: 30px;
+  color: #2c3e50;
+}
+
+/* Form Styling */
+form.todoForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 600px;
+}
+
+form input[type="text"] {
+  flex: 1 1 200px;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+form input[type="text"]:focus {
+  border-color: #3498db;
+}
+
+button.addTodo {
+  padding: 12px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.addTodo:hover {
+  background-color: #2980b9;
+}
+
+/* Todo List */
+ul.list {
+  list-style: none;
+  width: 100%;
+  max-width: 700px;
+}
+
+/* Each Todo Item */
+ul.list li {
+  background-color: #ffffff;
+  padding: 16px 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* Title and Description side-by-side */
+.todo-title,
+.todo-description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.todo-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.todo-description {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Delete Button */
+.delete-btn {
+  background-color: #e74c3c;
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+/* Responsive for small screens */
+@media (max-width: 600px) {
+  ul.list li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .todo-title,
+  .todo-description {
+    max-width: 100%;
+  }
+
+  .delete-btn {
+    align-self: flex-end;
+  }
+}
