@@ -70,7 +70,7 @@ ShowUser.addEventListener("click", ()=>{
 let regform=document.querySelector(".register");
 let nameInput=document.querySelector("#name");
 let usernameInput=document.querySelector("#username");
-regform.addEventListener("submit", function(e){
+regform.addEventListener("submit", function(e){9
      e.preventDefault();
     let name=nameInput.value;
     let username=usernameInput.value;
@@ -92,6 +92,8 @@ function addUser(name, username, URL){
         return res.json();
     }).then((data)=>{
         console.log(data);
+    }).catch((error)=>{
+        console.log(error);
     })
 }
 
