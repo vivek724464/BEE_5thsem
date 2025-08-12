@@ -1,5 +1,6 @@
 const { json } = require("body-parser");
 const express=require("express");
+const path=require("path");
 const fs=require("fs");
 const app=express();
 app.use(express.json());
@@ -63,6 +64,16 @@ app.post("/addUser", (req, res) => {
          })
     }
 });
+
+app.get("/getSum", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "sum.html"));
+});
+
+app.post("/getSum", (req, res)=>{
+    let{num1, num2}=req.body;
+    let sum=parseInt (num1) + parseInt (num2);
+    res.json({sum});
+})
 app.listen(3333, ()=>{
     console.log("Server Started");
 })
