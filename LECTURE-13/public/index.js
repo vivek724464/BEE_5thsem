@@ -70,7 +70,7 @@ ShowUser.addEventListener("click", ()=>{
 let regform=document.querySelector(".register");
 let nameInput=document.querySelector("#name");
 let usernameInput=document.querySelector("#username");
-regform.addEventListener("submit", function(e){9
+regform.addEventListener("submit", function(e){
      e.preventDefault();
     let name=nameInput.value;
     let username=usernameInput.value;
