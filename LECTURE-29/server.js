@@ -1,9 +1,42 @@
 const express=require("express");
 const {PrismaClient}=require("./generated/prisma");
+const {createClient}=require('redis');
 const app=express();
 const prisma=new PrismaClient();
 
+const client =createClient({url: 'redis://localhost:6379'});
+client.on('error', (err) => console.error(' Redis Client Error', err));
+
+(async () => {
+  await client.connect();
+  console.log('Connected to Redis');
+})();
+
 app.use(express.json());
+
+app.get("/getProfile",async  (req,res)=>{
+    let{id}=req.body;
+    let isUserDetailExist=await client.get(`user:${id}`);
+    if(isUserDetailExist){
+       return res.json({
+            success:true,
+            data:isUserDetailExist,
+            source:"redis"
+        }) 
+    }
+    let userDetail=await prisma.user.findUnique({
+        where:{
+            id:id
+        }
+    })
+    await client.set(`user:${id}`, JSON.stringify(userDetail));
+
+    res.json({
+        success:true,
+        data:userDetail,
+        source:"db"
+    })
+})
 
 app.post("/tweet/addUser",async(req,res)=>{
     try{
