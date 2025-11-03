@@ -16,7 +16,7 @@ async function cacheUserProfile() {
 }
 async function readProfile() {
     let data=await client.get("user:1");
-   retu
+   return data;
 }
 
 // cacheUserProfile()
@@ -25,7 +25,9 @@ async function readProfile() {
 // });
 
 readProfile()
-.then
+.then((data)=>{
+    console.log(data);
+})
 
 app.listen(3333, ()=>{
     console.log("server started");
