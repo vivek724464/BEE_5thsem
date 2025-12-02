@@ -1,11 +1,19 @@
 class OrderBook{
-    constructor(symbol="BTCUSD"){          // let orderBook=new OrderBook("BTCUSD"); this will call this constructor       
+    multipleMarket=new Map();
+    _constructor(symbol){          // let orderBook=new OrderBook("BTCUSD"); this will call this constructor       
         this.symbol=symbol,
         this.bids=[],
         this.ask=[],
         this._nextId=1,                    // If a variable or function starts with  '_' then it is private (developer will assume that it is to be kept private)
         this.lastTradedPrice=null,
         this.trades=[]
+    }
+    static getOrderBook(symbol){
+        if(!multipleMarket.has(symbol)){
+            let orderbook=new OrderBook(symbol);
+            multipleMarket.set(symbol, orderbook);
+        }
+        return multipleMarket.get(symbol);
     }
     _genOrderId(){
         return this._nextId++;
