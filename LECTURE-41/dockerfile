@@ -1,0 +1,16 @@
+# base image
+FROM node:lts-alpine3.23
+   
+# working directory
+WORKDIR /app
+# copy the code 
+COPY . .
+EXPOSE 3333
+
+# start the first command to be run 
+RUN npm install
+
+# executable
+CMD ["node", "server.js"]
+
+#instruction
